@@ -11,6 +11,16 @@ router.post('/crear', async (req, res) => {
 		res.status(500).json({ Status: 500, Message: error });
 	}
 });
+  
+router.post('/editar', async (req, res) => {
+	try {
+		const result = await services.editar(req.body);
+		res.json(result);
+	} catch (error) {
+		res.status(500).json({ Status: 500, Message: error });
+	}
+});
+
 
 router.post('/eliminar', async (req, res) => {
 	try {

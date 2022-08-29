@@ -18,6 +18,21 @@ const crear = async (body) => {
 
 };
 
+const editar = async (body) => {
+	try {
+		const { producto, token } = body;
+
+		const client = await soap.createClientAsync(URL);
+		const result = await client.Adm_EditarProductoAsync({ producto, token });
+		const parsedResult = JSON.parse(result[0].Adm_EditarProductoResult);
+
+		return parsedResult;
+	} catch (error) {
+		throw `Error in Adm_EditarProducto: ${error}`;
+	} 
+
+};
+
 const eliminar = async (body) => {
 	try {
 		const { codigoProducto, token } = body;
@@ -35,5 +50,6 @@ const eliminar = async (body) => {
 
 module.exports = {
 	crear,
+	editar,
 	eliminar,
 };
