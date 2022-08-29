@@ -44,10 +44,27 @@ const create = async (body) => {
 		return parsedResult;
 	} catch (error) {
 		throw `Error in Adm_CrearDeposito: ${error}`;
-	}
+	} 
+
+};
+
+const delete_ = async (body) => {
+	try {
+		const { codigoDeposito, token } = body;
+
+		const client = await soap.createClientAsync(URL);
+		const result = await client.Adm_BorrarDepositoAsync({ codigoDeposito, token });
+		const parsedResult = JSON.parse(result[0].Adm_BorrarDepositoResult);
+
+		return parsedResult;
+	} catch (error) {
+		throw `Error in Adm_BorrarDeposito: ${error}`;
+	} 
+
 };
 
 module.exports = {
 	getAll,
 	create,
+	delete_,
 };
