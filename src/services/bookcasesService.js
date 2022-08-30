@@ -44,8 +44,21 @@ const create = async (body) => {
 		return parsedResult;
 	} catch (error) {
 		throw `Error in Adm_CrearDeposito: ${error}`;
-	} 
+	}
+};
 
+const update = async (body) => {
+	try {
+		const { token } = body;
+
+		const client = await soap.createClientAsync(URL);
+		const result = await client.Adm_EditarDepositoAsync({ token });
+		const parsedResult = JSON.parse(result[0].Adm_EditarDepositoResult);
+
+		return parsedResult;
+	} catch (error) {
+		throw `Error in Adm_EditarDeposito: ${error}`;
+	}
 };
 
 const delete_ = async (body) => {
@@ -59,12 +72,12 @@ const delete_ = async (body) => {
 		return parsedResult;
 	} catch (error) {
 		throw `Error in Adm_BorrarDeposito: ${error}`;
-	} 
-
+	}
 };
 
 module.exports = {
 	getAll,
 	create,
+	update,
 	delete_,
 };

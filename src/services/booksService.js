@@ -2,8 +2,22 @@ const soap = require('soap');
 
 const URL = 'http://64.135.103.209:49152/SaintAdminServer?wsdl';
 
+const getAllByBookcases = async (body) => {
+	try {
+		const { codigoDeposito, token } = body;
+		const parametro = {};
 
-const crear = async (body) => {
+		const client = await soap.createClientAsync(URL);
+		const result = await client.Adm_ListarProductosAsync({ parametro, codigoDeposito, token });
+		const parsedResult = JSON.parse(result[0].Adm_ListarProductosResult);
+
+		return parsedResult;
+	} catch (error) {
+		throw `Error in Adm_ListarProductos: ${error}`;
+	}
+};
+
+const create = async (body) => {
 	try {
 		const { producto, token } = body;
 
@@ -14,11 +28,10 @@ const crear = async (body) => {
 		return parsedResult;
 	} catch (error) {
 		throw `Error in Adm_CrearProducto: ${error}`;
-	} 
-
+	}
 };
 
-const editar = async (body) => {
+const update = async (body) => {
 	try {
 		const { producto, token } = body;
 
@@ -29,11 +42,10 @@ const editar = async (body) => {
 		return parsedResult;
 	} catch (error) {
 		throw `Error in Adm_EditarProducto: ${error}`;
-	} 
-
+	}
 };
 
-const eliminar = async (body) => {
+const delete_ = async (body) => {
 	try {
 		const { codigoProducto, token } = body;
 
@@ -44,12 +56,12 @@ const eliminar = async (body) => {
 		return parsedResult;
 	} catch (error) {
 		throw `Error in Adm_BorrarProducto: ${error}`;
-	} 
-
+	}
 };
 
 module.exports = {
-	crear,
-	editar,
-	eliminar,
+	getAllByBookcases,
+	create,
+	update,
+	delete_,
 };
