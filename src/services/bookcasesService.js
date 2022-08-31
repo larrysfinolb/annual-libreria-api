@@ -49,10 +49,10 @@ const create = async (body) => {
 
 const update = async (body) => {
 	try {
-		const { token } = body;
+		const { deposito, token } = body;
 
 		const client = await soap.createClientAsync(URL);
-		const result = await client.Adm_EditarDepositoAsync({ token });
+		const result = await client.Adm_EditarDepositoAsync({ deposito, token });
 		const parsedResult = JSON.parse(result[0].Adm_EditarDepositoResult);
 
 		return parsedResult;
