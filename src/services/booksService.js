@@ -11,7 +11,22 @@ const getAllByBookcases = async (body) => {
 		const result = await client.Adm_ListarProductosAsync({ parametro, codigoDeposito, token });
 		const parsedResult = JSON.parse(result[0].Adm_ListarProductosResult);
 
-		return parsedResult;
+		const data = parsedResult.Data.map((obj) => {
+			return {
+				Codigo: obj.Codigo,
+				CodigoInstancia: obj.CodigoInstancia,
+				Descripcion: obj.Descripcion,
+				CostoActual: obj.CostoActual,
+				Fila: obj.Fila,
+			};
+		});
+
+		const newResult = {
+			...parsedResult,
+			Data: data,
+		};
+
+		return newResult;
 	} catch (error) {
 		throw `Error in Adm_ListarProductos: ${error}`;
 	}

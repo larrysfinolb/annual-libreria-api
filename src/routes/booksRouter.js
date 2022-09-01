@@ -8,7 +8,7 @@ router.post('/get-all-by-bookcases', async (req, res) => {
 		const result = await services.getAllByBookcases(req.body);
 		res.json(result);
 	} catch (error) {
-		res.status(500).json({ Status: 500, Message: error });
+		res.status(500).json({ Status: 500, Message: `${error}` });
 	}
 });
 
@@ -17,7 +17,7 @@ router.post('/create', async (req, res) => {
 		const result = await services.create(req.body);
 		res.json(result);
 	} catch (error) {
-		res.status(500).json({ Status: 500, Message: error });
+		res.status(500).json({ Status: 500, Message: `${error}` });
 	}
 });
 
@@ -26,16 +26,16 @@ router.post('/update', async (req, res) => {
 		const result = await services.update(req.body);
 		res.json(result);
 	} catch (error) {
-		res.status(500).json({ Status: 500, Message: error });
+		res.status(500).json({ Status: 500, Message: `${error}` });
 	}
 });
 
 router.post('/delete', async (req, res) => {
 	try {
-		const result = await services.delete(req.body);
+		const result = await services.delete_(req.body);
 		res.json(result);
 	} catch (error) {
-		res.status(500).json({ Status: 500, Message: error });
+		res.status(500).json({ Status: 500, Message: `${error}` });
 	}
 });
 

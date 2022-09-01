@@ -8,7 +8,7 @@ router.post('/login-saint', async (req, res) => {
 		const result = await services.loginSaint(req.body);
 		res.json(result);
 	} catch (error) {
-		res.status(500).json({ Status: 500, Message: error });
+		res.status(500).json({ Status: 500, Message: `${error}` });
 	}
 });
 
