@@ -35,43 +35,43 @@ const getAll = async (body) => {
 
 const create = async (body) => {
 	try {
-		const { deposito, token } = body;
+		const { instancia, token } = body;
 
 		const client = await soap.createClientAsync(URL);
-		const result = await client.Adm_CrearDepositoAsync({ deposito, token });
-		const parsedResult = JSON.parse(result[0].Adm_CrearDepositoResult);
+		const result = await client.Adm_CrearInstanciaInventarioAsync({ instancia, token });
+		const parsedResult = JSON.parse(result[0].Adm_CrearInstanciaInventarioResult);
 
 		return parsedResult;
 	} catch (error) {
-		throw `Error in Adm_CrearDeposito: ${error}`;
+		throw `Error in Adm_CrearInstanciaInventario: ${error}`;
 	}
 };
 
 const update = async (body) => {
 	try {
-		const { deposito, token } = body;
+		const { instancia, token } = body;
 
 		const client = await soap.createClientAsync(URL);
-		const result = await client.Adm_EditarDepositoAsync({ deposito, token });
-		const parsedResult = JSON.parse(result[0].Adm_EditarDepositoResult);
+		const result = await client.Adm_EditarInstanciaInventarioAsync({ instancia, token });
+		const parsedResult = JSON.parse(result[0].Adm_EditarInstanciaInventarioResult);
 
 		return parsedResult;
 	} catch (error) {
-		throw `Error in Adm_EditarDeposito: ${error}`;
+		throw `Error in Adm_EditarInstanciaInventario: ${error}`;
 	}
 };
 
 const delete_ = async (body) => {
 	try {
-		const { codigoDeposito, token } = body;
+		const { codigoInstancia, token } = body;
 
 		const client = await soap.createClientAsync(URL);
-		const result = await client.Adm_BorrarDepositoAsync({ codigoDeposito, token });
-		const parsedResult = JSON.parse(result[0].Adm_BorrarDepositoResult);
+		const result = await client.Adm_BorrarInstanciaInventarioAsync({ codigoInstancia, token });
+		const parsedResult = JSON.parse(result[0].Adm_BorarInstanciaInventarioResult);
 
 		return parsedResult;
 	} catch (error) {
-		throw `Error in Adm_BorrarDeposito: ${error}`;
+		throw `Error in Adm_BorrarInstanciaInventario: ${error}`;
 	}
 };
 
