@@ -67,7 +67,7 @@ const delete_ = async (body) => {
 
 		const client = await soap.createClientAsync(URL);
 		const result = await client.Adm_BorrarInstanciaInventarioAsync({ codigoInstancia, token });
-		const parsedResult = JSON.parse(result[0].Adm_BorarInstanciaInventarioResult);
+		const parsedResult = JSON.parse(result[0].Adm_BorrarInstanciaInventarioResult);
 
 		return parsedResult;
 	} catch (error) {
